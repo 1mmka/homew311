@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/stylesheet.css'%}" type="text/css">
+  <title>Task List</title>
+</head>
+<body>
+  <h1 class="user-style">User: {{ request.user.username }}</h1>
+  <a href="{% url 'logout' %}"><button class="logout-button">Logout</button></a>
+<div class="task-list">
+  <table>
+    <thead>
+      <tr>
+        <th>Task name</th>
+        <th>Created</th>
+        <th>Due Date</th>
+        <th>Category</th>
+        <th class="action-column">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+        {% if task.user == request.user %}
+        <tr>
+          <td>{{ task.title }}</td>
+          <td>{{ task.created }}</td>
+          <td>{{ task.due_date }}</td>
+          <td>{{ task.category }}</td>
+          <td class="action-column"><a href="{% url 'detail-task' task.pk %}" style="text-decoration: none; color:orange;">More Info</a></td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'create-task' %}" class="create-task-button">Create Task</a>
+</div>
+<div class="pag-cont">
+  {% if page.has_previous %}
+    <a href="?page={{ page.previous_page_number }}" class="pagination-link prev">Prev</a>
+  {% endif %}
+  
+  {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}" class="pagination-link next">Next</a>
+  {% endif %}
+</div>
+</body>
+</html>

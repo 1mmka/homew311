@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .edit-task-form {
+      width: 40%;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-top: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      color: #4caf50;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .save-button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cancel-button {
+      background-color: #f44336;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="edit-task-form">
+    <h2>Edit Task</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+      <div class="form-group">
+        <label for="title">Task name:</label>
+        <input type="text" id="title" name="title" value="{{ task.title }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="created">Created:</label>
+        <input type="text" id="content" name="content" value="{{ task.content }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="due_date">Due Date:</label>
+        {{ form.due_date }}
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category:</label>
+        {{ form.category }}
+      </div>
+
+      <div class="action-buttons">
+        <button type="submit" class="save-button">Save Changes</button>
+        <a href="{% url 'detail-task' detail_id %}"><button class="cancel-button">Back</button></a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

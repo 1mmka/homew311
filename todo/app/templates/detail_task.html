@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .task-details {
+      width: 60%;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-top: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      color: #4caf50;
+    }
+
+    .detail-label {
+      font-weight: bold;
+      margin-top: 10px;
+      color: ForestGreen;
+    }
+
+    .detail-value {
+      margin-bottom: 20px;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .action-buttons button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .edit-button {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .delete-button {
+      background-color: crimson;
+      color: white;
+      margin-right: 45rem;
+    }
+
+    .back-button {
+      background-color: orange;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="task-details">
+    <h2 style="color: whitesmoke;">Task Details</h2>
+    <div class="detail-label">Task name:</div>
+    <div class="detail-value">{{ taskInfo.title }}</div>
+
+    <div class="detail-label">Content:</div>
+    <div class="detail-value">{{ taskInfo.content }}</div>
+
+    <div class="detail-label">Created:</div>
+    <div class="detail-value">{{ taskInfo.created }}</div>
+
+    <div class="detail-label">Due Date:</div>
+    <div class="detail-value">{{ taskInfo.due_date }}</div>
+
+    <div class="detail-label">Category:</div>
+    <div class="detail-value">{{ taskInfo.category }}</div>
+
+    <div class="action-buttons">
+      <a href="{% url 'update-task' taskInfo.pk %}"><button class="edit-button">Edit</button></a>
+      <a href="{% url 'delete-task' taskInfo.pk %}"><button class="delete-button">Delete</button></a>
+      <a href="{% url 'list-tasks' %}"><button class="back-button">Back</button></a>
+    </div>
+  </div>
+</body>
+</html>

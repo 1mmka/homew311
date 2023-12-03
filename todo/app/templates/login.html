@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login Form</title>
+      <link rel="stylesheet" href="{% static 'css/stylesheet.css'%}" type="text/css">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title">
+            Login Form
+         </div>
+         <form method="post" action="#">
+            {% csrf_token %}
+            <div class="field">
+               <input type="text" required name="username">
+               <label>Username</label>
+            </div>
+            <div class="field">
+               <input type="password" required name="password">
+               <label>Password</label>
+            </div>
+            <div class="content">
+               <div class="pass-link">
+                  <a href="{% url 'reset-password' %}">Forgot password?</a>
+               </div>
+            </div>
+            <div class="field">
+               <button type="submit" value="Login">Login</button>
+            </div>
+            <div class="signup-link">
+               Not a member? <a href="{% url 'register' %}">Signup now</a>
+            </div>
+         </form>
+      </div>
+   </body>
+</html>
